@@ -56,6 +56,10 @@ class AppStateProvider with ChangeNotifier {
     await NotificationService.requestPermission();
     await NotificationService.scheduleCourseSuggestionNotification();
 
+    // Load saved language first
+    final savedLangCode = await _userDataService.loadLanguage();
+    _locale = Locale(savedLangCode);
+
     _savedCourses = await _userDataService.loadCourses();
     _userProgress = await _userDataService.loadUserProgress();
 
@@ -65,9 +69,11 @@ class AppStateProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setLocale(Locale newLocale) {
+  Future<void> setLocale(Locale newLocale) async {
     if (_locale != newLocale) {
       _locale = newLocale;
+      // Persist the new language choice
+      await _userDataService.saveLanguage(newLocale.languageCode);
       notifyListeners();
     }
   }

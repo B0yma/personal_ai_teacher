@@ -47,13 +47,13 @@ class NotificationService {
       content: NotificationContent(
         id: notificationId,
         channelKey: channelKey,
-        title: 'New Course Ideas Await!',
-        body: 'We designed some courses for you, click to checkout.',
+        title: 'Вас ждут новые открытия!',
+        body: 'Подобрал пару терминов, нажмите, чтобы посмотреть.',
         notificationLayout: NotificationLayout.Default,
         payload: {'navigate': 'true'},
       ),
       schedule: NotificationInterval(
-        interval: Duration(minutes: Config.notificationIntervalMinutes),
+        interval: const Duration(minutes: Config.notificationIntervalMinutes),
         repeats: true,
         allowWhileIdle: true,
       ),
