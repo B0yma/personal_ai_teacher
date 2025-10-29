@@ -5,5 +5,5 @@ class Config {
   );
 
   // Notification interval in minutes
-  static const int notificationIntervalMinutes = 1111;
+  static const int notificationIntervalMinutes = 5;
 }
